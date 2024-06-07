@@ -1,6 +1,6 @@
 import pygame
+import pygame
 import sys
-
 def show_game_over_screen(screen, score):
     font = pygame.font.SysFont(None, 72)
     game_over_text = font.render("Game Over", True, (255, 0, 0))
