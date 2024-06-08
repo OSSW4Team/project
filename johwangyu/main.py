@@ -26,7 +26,6 @@ def check_collision(character_rect, objects, obj_width, obj_height):
     return None
 
 def check_spike_collision(character_rect, spike):
-    # 'spike.rect'를 사용하여 충돌 검사
     return character_rect.colliderect(spike.rect)
 
 def remove_floor_section(blocks, x_position, width):
@@ -86,6 +85,9 @@ def main():
     current_stage = 1
     blocks, enemies, powerups, portal = init_stage(*stages[current_stage])
 
+    second_block_x, second_block_y = 500, 350
+
+
     # 추가된 부분: 두 번째 블록의 좌표 설정
     second_block_x, second_block_y = 500, 350  # 예시 좌표
     
@@ -130,6 +132,15 @@ def main():
 
         seconds = (pygame.time.get_ticks() - start_ticks) / 1000
         time_left = time_limit - seconds
+
+
+        if check_spike_collision(character_rect, spike) or check_collision(character_rect, enemies, enemy_width, enemy_height):
+            # 게임을 바로 재시작
+            character_x, character_y = 30, SCREEN_HEIGHT - character_height * 2
+            blocks, enemies, powerups, portal = init_stage(*stages[current_stage])
+            start_ticks = pygame.time.get_ticks()
+            score = 0
+
         if time_left <= 0:
             choice = show_game_over_screen(screen, score)
             if choice == "restart":
@@ -204,14 +215,6 @@ def main():
         else:
             is_on_ground = False
 
-        enemy_collided = check_collision(character_rect, enemies, enemy_width, enemy_height)
-        if enemy_collided:
-            choice = show_game_over_screen(screen, score)
-            if choice == "restart":
-                pass
-            else:
-                running = False
-
         for enemy in enemies:
             enemy.x += enemy_speed * enemy.direction
             if enemy.x <= 0 or enemy.x >= SCREEN_WIDTH - enemy_width:
@@ -241,7 +244,6 @@ def main():
             remove_floor_section(blocks, second_block_x, platform_width)
 
         pygame.draw.rect(screen, (144, 228, 144), (0, floor_y, SCREEN_WIDTH, floor_height))
-
 
         for block in blocks:
             pygame.draw.rect(screen, platform_color, (block.x, block.y, platform_width, platform_height))
