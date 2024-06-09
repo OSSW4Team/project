@@ -6,7 +6,9 @@ class Block:
     def __init__(self, x, y):
         # 블록 초기 위치 설정
         self.x = x
+        print(x)
         self.y = y
+        
 
     # 화면에 블록 그리기
     def draw(self, screen):
@@ -20,6 +22,8 @@ class Block:
     # character_x: 캐릭터의 x 좌표
     #  character_y: 캐릭터의 y 좌표
     # character_width: 캐릭터의 너비
+    # character_height: 캐릭터의 높이
+
     @staticmethod
     def check_collision(character_x, character_y, character_width, character_height, blocks):  
         for block in blocks:
