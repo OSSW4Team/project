@@ -4,6 +4,7 @@ from game_over import show_game_over_screen
 from stage import init_stage, stages
 from lobby import show_lobby_screen
 from spike import Spike
+from portal import Portal
 
 def main():
     pygame.init()
@@ -61,6 +62,7 @@ def main():
     # 스테이지 설정
     current_stage = 1
     blocks, enemies, powerups, portal = init_stage(*stages[current_stage])
+    portal = None  # 포탈을 초기에는 표시하지 않음
 
     # 추가된 부분: 두 번째 블록의 좌표 설정
     second_block_x, second_block_y = 500, 350  # 예시 좌표
@@ -81,7 +83,7 @@ def main():
         # 바닥의 색깔을 흰색으로 덮어서 지움
         pygame.draw.rect(screen, WHITE, (x, floor_y, width, floor_height))
 
-# 추가된 함수: 플레이어와 가시 돌의 충돌 확인
+    # 추가된 함수: 플레이어와 가시 돌의 충돌 확인
     def check_spike_collision(player_rect, spike_rect):
         if player_rect.colliderect(spike_rect):
             return True
@@ -103,15 +105,19 @@ def main():
     while running:
         screen.fill(WHITE)
         character_rect = pygame.Rect(character_x, character_y, character_width, character_height)
-
+        
         seconds = (pygame.time.get_ticks() - start_ticks) / 1000
         time_left = time_limit - seconds
         if time_left <= 0:
             choice = show_game_over_screen(screen, score)
             if choice == "restart":
                 # 재시작
-                # 캐릭터 및 게임 상태 초기화 코드 작성
-                pass
+                current_stage = 1
+                blocks, enemies, powerups, portal = init_stage(*stages[current_stage])
+                portal = None
+                character_x, character_y = character_width, SCREEN_HEIGHT - character_height * 2
+                start_ticks = pygame.time.get_ticks()
+                score = 0
             else:
                 running = False
                 
@@ -120,8 +126,12 @@ def main():
             choice = show_game_over_screen(screen, score)
             if choice == "restart":
                 # 재시작
-                # 캐릭터 및 게임 상태 초기화 코드 작성
-                pass
+                current_stage = 1
+                blocks, enemies, powerups, portal = init_stage(*stages[current_stage])
+                portal = None
+                character_x, character_y = character_width, SCREEN_HEIGHT - character_height * 2
+                start_ticks = pygame.time.get_ticks()
+                score = 0
             else:
                 running = False
 
@@ -136,7 +146,7 @@ def main():
                     space_pressed = False
 
         if space_pressed and is_on_ground:
-            vertical_momentum = -         jump_speed
+            vertical_momentum = -jump_speed
             is_on_ground = False
 
         keys = pygame.key.get_pressed()
@@ -172,8 +182,12 @@ def main():
             choice = show_game_over_screen(screen, score)
             if choice == "restart":
                 # 재시작
-                # 캐릭터 및 게임 상태 초기화 코드 작성
-                pass
+                current_stage = 1
+                blocks, enemies, powerups, portal = init_stage(*stages[current_stage])
+                portal = None
+                character_x, character_y = character_width, SCREEN_HEIGHT - character_height * 2
+                start_ticks = pygame.time.get_ticks()
+                score = 0
             else:
                 running = False
 
@@ -187,19 +201,30 @@ def main():
             powerups.remove(powerup_collided)
             score += 1
 
+        if score >= 3 and portal is None:  # 코인을 3개 모았을 때 포탈 생성
+            portal = Portal(760, 365)
+
         if portal and character_rect.colliderect(pygame.Rect(portal.x, portal.y, 30, 80)):
             current_stage += 1
             if current_stage in stages:
                 blocks, enemies, powerups, portal = init_stage(*stages[current_stage])
-                # 캐릭터 시작 위치를 왼쪽 끝에 가깝게 설정
+                portal = None
                 character_x, character_y = character_width, SCREEN_HEIGHT - character_height * 2
                 start_ticks = pygame.time.get_ticks()
+                score = 0
+                
+                
+                
             else:
                 choice = show_game_over_screen(screen, score)
                 if choice == "restart":
                     # 재시작
-                    # 캐릭터 및 게임 상태 초기화 코드 작성
-                    pass
+                    current_stage = 1
+                    blocks, enemies, powerups, portal = init_stage(*stages[current_stage])
+                    portal = None
+                    character_x, character_y = character_width, SCREEN_HEIGHT - character_height * 2
+                    start_ticks = pygame.time.get_ticks()
+                    score = 0
                 else:
                     running = False
 
