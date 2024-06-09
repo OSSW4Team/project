@@ -1,5 +1,5 @@
 import pygame
-import sys
+import sy
 
 def show_game_over_screen(screen, score):
     font = pygame.font.SysFont(None, 72)
