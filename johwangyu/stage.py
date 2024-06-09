@@ -1,4 +1,4 @@
-import pygam
+import pygame
 
 class Block:
     def __init__(self, x, y):
