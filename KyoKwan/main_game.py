@@ -10,7 +10,7 @@ right_jump = pygame.image.load('C:/OSSW4/Img/Right_J.png')
 user_image = pygame.image.load('C:/OSSW4/Img/User.png')
 block_image = pygame.image.load('C:/OSSW4/Img/block.png')
 falling_block_image = pygame.image.load('C:/OSSW4/Img/Block.png')
-spike_image = pygame.image.load('/path/to/spike.png')
+spike_image = pygame.image.load('C:/OSSW4/Img/spike.png')
 
 #
 # 크기 조정
@@ -271,12 +271,17 @@ while running:
         if falling_block.is_visible:
             screen.blit(falling_block_image, (falling_block.x - camera_x, falling_block.y))
             
+
         if check_trigger_zone_collision(character_rect, spike_trigger_zone):
             spike_height = 110
             spike_positions = [(x, floor_y - spike_height) for x in range(550, 600, spike_width)]
-
+            
+            
         for spike in spike_positions:
-            pygame.draw.rect(screen, SPIKE_COLOR, (spike[0] - camera_x, spike[1], spike_width, spike_height))
+            screen.blit(spike_image, (spike[0] - camera_x, spike[1], spike_width, spike_height))   
+            
+        # for spike in spike_positions:
+        #     pygame.draw.rect(screen, SPIKE_COLOR, (spike[0] - camera_x, spike[1], spike_width, spike_height))
 
         # pygame.draw.rect(screen, (0, 255, 0), trigger_falling_block_zone.move(-camera_x, 0), 2)
         # pygame.draw.rect(screen, (0, 0, 0), del_block_1.move(-camera_x, 0), 2)
