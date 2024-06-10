@@ -46,3 +46,58 @@ Your branch is up to date with 'origin/kyokwan'.
 
 ERROR: Switched to branch 'kyokwan'
 
+COMMAND: git pull origin kyokwan
+OUTPUT: Already up to date.
+
+ERROR: From https://github.com/OSSW4Team/project
+ * branch            kyokwan    -> FETCH_HEAD
+
+COMMAND: git add C:\OSSW4\your_file.txt
+OUTPUT: 
+ERROR: 
+COMMAND: git commit -m w
+OUTPUT: [kyokwan 1d5bc74] w
+ 3 files changed, 101 insertions(+), 37 deletions(-)
+ create mode 100644 commit_log.txt
+
+ERROR: 
+COMMAND: git push origin kyokwan
+OUTPUT: 
+ERROR: To https://github.com/OSSW4Team/project.git
+   43523b9..1d5bc74  kyokwan -> kyokwan
+
+ERROR: Command '['git', 'checkout', 'main']' returned non-zero exit status 1.
+COMMAND: git checkout main
+OUTPUT: 
+ERROR: error: Your local changes to the following files would be overwritten by checkout:
+	commit_log.txt
+Please commit your changes or stash them before you switch branches.
+Aborting
+
+COMMAND: git pull origin kyokwan
+OUTPUT: Already up to date.
+
+ERROR: From https://github.com/OSSW4Team/project
+ * branch            kyokwan    -> FETCH_HEAD
+
+COMMAND: git add C:\OSSW4\your_file.txt
+OUTPUT: 
+ERROR: 
+COMMAND: git commit -m w
+OUTPUT: [kyokwan 11147be] w
+ 1 file changed, 1 insertion(+)
+
+ERROR: 
+COMMAND: git push origin kyokwan
+OUTPUT: 
+ERROR: To https://github.com/OSSW4Team/project.git
+   1d5bc74..11147be  kyokwan -> kyokwan
+
+ERROR: Command '['git', 'checkout', 'main']' returned non-zero exit status 1.
+COMMAND: git checkout main
+OUTPUT: 
+ERROR: error: Your local changes to the following files would be overwritten by checkout:
+	commit_log.txt
+Please commit your changes or stash them before you switch branches.
+Aborting
+
