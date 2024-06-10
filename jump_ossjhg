@@ -1,4 +1,4 @@
-import pyga]]
+import pygame
 import sys
 import random
 
