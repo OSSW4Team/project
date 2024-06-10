@@ -103,7 +103,7 @@ def main():
     floor_removed = False  # 바닥이 지워졌는지 여부를 추적하는 변수
 
     while running:
-        screen.fill(WHITE)
+        s
         character_rect = pygame.Rect(character_x, character_y, character_width, character_height)
         
         seconds = (pygame.time.get_ticks() - start_ticks) / 1000
