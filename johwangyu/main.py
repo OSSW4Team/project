@@ -1,6 +1,6 @@
 import pygame
 import sys
-from game_over import show_game_over_screen
+from game_over import show_game_over_sc
 from stage import init_stage, stages
 from lobby import show_lobby_screen
 from spike import Spike
