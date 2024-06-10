@@ -1,4 +1,4 @@
-import pygam
+import pygame
 import sys
 import random
 
