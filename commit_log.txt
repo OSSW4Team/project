@@ -1,0 +1,48 @@
+COMMAND: git pull origin kyokwan
+OUTPUT: Already up to date.
+
+ERROR: From https://github.com/OSSW4Team/project
+ * branch            kyokwan    -> FETCH_HEAD
+
+COMMAND: git add C:\OSSW4\your_file.txt
+OUTPUT: 
+ERROR: 
+COMMAND: git commit -m w
+OUTPUT: [kyokwan 43523b9] w
+ 1 file changed, 1 insertion(+)
+
+ERROR: 
+COMMAND: git push origin kyokwan
+OUTPUT: 
+ERROR: To https://github.com/OSSW4Team/project.git
+   0465f6b..43523b9  kyokwan -> kyokwan
+
+COMMAND: git checkout main
+OUTPUT: M	KyoKwan/No.py
+Your branch is up to date with 'origin/main'.
+
+ERROR: Switched to branch 'main'
+
+COMMAND: git pull origin main
+OUTPUT: Already up to date.
+
+ERROR: From https://github.com/OSSW4Team/project
+ * branch            main       -> FETCH_HEAD
+
+COMMAND: git merge --no-ff -m Kyokwan kyokwan
+OUTPUT: Merge made by the 'ort' strategy.
+ your_file.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+ERROR: 
+COMMAND: git push origin main
+OUTPUT: 
+ERROR: To https://github.com/OSSW4Team/project.git
+   0465f6b..432761b  main -> main
+
+COMMAND: git checkout kyokwan
+OUTPUT: M	KyoKwan/No.py
+Your branch is up to date with 'origin/kyokwan'.
+
+ERROR: Switched to branch 'kyokwan'
+
